@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "./;homeaffairspb";
+
+message CitizenRequest {
+  string idNumber = 1;
+}
+
+message CitizenResponse {
+  string firstName = 1;
+  string surname = 2;
+  int32 age = 3;
+}
+
+service HomeAffairs {
+  rpc GetCitizen (CitizenRequest) returns (CitizenResponse) {};
+}

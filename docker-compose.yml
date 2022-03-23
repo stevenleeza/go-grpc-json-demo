@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  server:
+    container_name: server
+    ports:
+      - 50050:50050
+      - 50051:50051
+    build:
+      context: .
+      dockerfile: Dockerfile-server
+    restart: always
+    networks:
+      - dev-network
+
+  client:
+    container_name: client
+    build:
+      context: .
+      dockerfile: Dockerfile-client
+    restart: "no"
+    networks:
+      - dev-network
+    depends_on:
+      - server
+
+networks:
+  dev-network:
+    driver: bridge
